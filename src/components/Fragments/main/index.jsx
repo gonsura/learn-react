@@ -1,23 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-const Main = () => {
+const Main = ({ cats }) => {
   const [counter, setCounter] = useState(0)
-  const [cats, setCats] = useState([])
-  useEffect(() => {
-    fetch('https://api.thecatapi.com/v1/breeds')
-      .then((res) => res.json())
-      .then((data) => {
-        setCats(data)
-      })
-  }, [])
 
   const decrement = () => {
     if (counter > 0) setCounter((prevCount) => prevCount - 1)
   }
-const increment = () => {
-  if (counter < 10)
-  setCounter((prevCount) => prevCount + 1)
-}
+  const increment = () => {
+    if (counter < 10) setCounter((prevCount) => prevCount + 1)
+  }
 
   return (
     <main className='p-4 text-2xl text-zinc-800 bg-zinc-400 min-h-[calc(100vh-4rem)]'>
@@ -26,10 +17,7 @@ const increment = () => {
           -
         </button>
         <span className='mx-6'>{counter}</span>
-        <button
-          onClick={increment}
-          className='bg-zinc-700 px-4'
-        >
+        <button onClick={increment} className='bg-zinc-700 px-4'>
           +
         </button>
       </div>
