@@ -1,7 +1,10 @@
-const NavSearchInput = ({isOpen,setQuery}) => {
+
+
+const NavSearchInput = ({isOpen,setQuery, inputRef}) => {
   return (
     <div className={`absolute inset-0 h-16 bg-zinc-800 px-10 py-2 transition-all ${isOpen ? '' : 'w-0 left-[-100vw]'}`}>
         <input
+        ref={inputRef}
           type='text'
           onChange={(e) => setQuery(e.target.value)}
           placeholder='Search your favorite cat'

@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 const App = () => {
   const [cats, setCats] = useState([])
   const [query, setQuery] = useState('')
+  
+
   useEffect(() => {
     fetch('https://api.thecatapi.com/v1/breeds')
       .then((res) => res.json())

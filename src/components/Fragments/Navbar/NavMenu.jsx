@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import NavBtn from '../../Elements/NavBtn'
 import NavMenuItem from '../../Elements/NavMenuItem'
 import NavSearchBtn from '../../Elements/NavSearchBtn'
 import NavSearchInput from '../../Elements/NavSearchInput/index'
 
 const NavMenu = ({ setQuery }) => {
+  const inputRef = useRef()
   const [isHamburgerOpen, setisHamburgerOpen] = useState(false)
   const hamburgerOpenMenu = () => {
     setisHamburgerOpen(!isHamburgerOpen)
@@ -12,6 +13,8 @@ const NavMenu = ({ setQuery }) => {
   const [isSearchOpen, setisSearchOpen] = useState(false)
   const searchOpenMenu = () => {
     setisSearchOpen(!isSearchOpen)
+    setQuery('')
+    inputRef.current.value = ''
   }
   return (
     <>
@@ -26,7 +29,7 @@ const NavMenu = ({ setQuery }) => {
         <NavSearchBtn onClick={searchOpenMenu} isOpen={isSearchOpen} />
         <NavBtn onClick={hamburgerOpenMenu} isOpen={isHamburgerOpen} />
       </div>
-      <NavSearchInput isOpen={isSearchOpen} setQuery={setQuery} />
+      <NavSearchInput inputRef={inputRef} isOpen={isSearchOpen} setQuery={setQuery} />
     </>
   )
 }
